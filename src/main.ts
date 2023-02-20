@@ -3,6 +3,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import { initRouter } from './router'
 import { initStore } from './store'
+import i18n from './locals'
 
 /**
  * 第一种写法
@@ -18,4 +19,5 @@ const app = createApp(App)
 initRouter(app)
 // 初始化vuex
 initStore(app)
+app.use(i18n)
 app.mount('#app')

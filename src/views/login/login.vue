@@ -17,20 +17,33 @@
       />
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="loginFn()"
-        >Submit</el-button
-      >
+      <el-button type="primary" @click="loginFn()">
+        {{ $t('login.login')}}
+      </el-button>
     </el-form-item>
   </el-form>
+  <el-button type="primary" @click="changeLang('en')">英文</el-button>
+  <el-button type="primary" @click="changeLang('zh')">中文</el-button>
 </template>
 
 <script setup lang='ts'>
-import { ref, toRefs, reactive } from 'vue'
+import { ref, toRefs, reactive, onMounted } from 'vue'
 import api from '../../api/api'
 import Cookie from 'js-cookie'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
-
+import { useI18n } from 'vue-i18n'
+const { locale } = useI18n()
+const { t } = useI18n()
+console.log(t('login.userName'))
+onMounted(() => {
+  console.log(t('login.userName'))
+})
+// 切换中英文
+const changeLang = (val: string) => {
+  locale.value = val
+  localStorage.setItem('lang', val)
+}
 let ruleForm = reactive({
     userName: '',
     pwd: ''
