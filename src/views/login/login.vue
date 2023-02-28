@@ -89,7 +89,7 @@ const loginFn = () => {
     }
     console.log(api)
     api.loginApi(data).then((res: { code: number; data: { token: string } }) => {
-      if(res.code === 200) {
+      if(res.code === 0) {
         // 先存储token
         // js-cookie
         Cookie.set('token', res.data.token,{expires: 7}) // expires: 7 过期时间7天
